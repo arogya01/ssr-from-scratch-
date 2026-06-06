@@ -65,7 +65,7 @@ function Hero() {
         </h1>
         <p className="hero-subtitle">
           No frameworks. No magic. Just React, Express, and esbuild — wired together
-          by hand to understand what really happens when HTML meets the browser.
+          by hand to understand what really happens when HTML streams to the browser.
         </p>
         <div className="hero-cta-group">
           <a href="#architecture">
@@ -91,8 +91,8 @@ function Architecture() {
             The Full Picture
           </h2>
           <p className="section-subtitle">
-            A request travels from browser to server and back — rendered as HTML,
-            then hydrated into a fully interactive React app.
+            A request travels from browser to server and back — streamed as HTML
+            chunks, then hydrated into a fully interactive React app.
           </p>
         </Reveal>
 
@@ -116,16 +116,16 @@ function Architecture() {
 
             <div className="arch-node">
               <span className="arch-node-icon">⚛️</span>
-              <div className="arch-node-title">React SSR</div>
-              <div className="arch-node-desc">renderToString()</div>
+              <div className="arch-node-title">React Streaming</div>
+              <div className="arch-node-desc">renderToPipeableStream()</div>
             </div>
 
             <span className="arch-arrow">→</span>
 
             <div className="arch-node">
               <span className="arch-node-icon">📄</span>
-              <div className="arch-node-title">HTML Response</div>
-              <div className="arch-node-desc">Full markup sent</div>
+              <div className="arch-node-title">HTML Stream</div>
+              <div className="arch-node-desc">Chunks piped to res</div>
             </div>
 
             <span className="arch-arrow">→</span>
@@ -155,9 +155,14 @@ const FEATURES = [
     desc: "Dual builds in under 50ms — one for the server (Node), one for the client (browser). Blazingly fast.",
   },
   {
+    icon: "🌊",
+    title: "Streaming SSR",
+    desc: "renderToPipeableStream() sends HTML in chunks as React renders. The shell arrives first, then content streams in — no waiting for the full tree.",
+  },
+  {
     icon: "💧",
     title: "React 19 Hydration",
-    desc: "Server-rendered HTML gets hydrated with hydrateRoot(), making the page interactive without re-rendering.",
+    desc: "Streamed HTML gets hydrated with hydrateRoot(), making the page interactive without re-rendering.",
   },
   {
     icon: "🔄",
@@ -257,30 +262,28 @@ function serverCode() {
   return `import express from "express";
 import { App } from "./app.tsx";
 import React from "react";
-import { renderToString } from "react-dom/server";
+import { renderToPipeableStream }
+  from "react-dom/server";
 
 const app = express();
 
-app.use(express.static("dist/public"));
-
 app.use("/", (req, res) => {
-  const html = renderToString(
-    React.createElement(App)
-  );
-
-  return res.send(\`
-    <!DOCTYPE html>
-    <html lang="en">
-      <head>
-        <title>SSR with React</title>
-        <script type="module"
-          src="/client.js"></script>
-      </head>
-      <body>
-        <div id="root">\${html}</div>
-      </body>
-    </html>
-  \`);
+  const { pipe } =
+    renderToPipeableStream(
+      React.createElement(App),
+      {
+        onShellReady() {
+          res.statusCode = 200;
+          res.write(\`
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>...</head>
+            <body><div id="root">
+          \`);
+          pipe(res);
+        },
+      }
+    );
 });
 
 app.listen(3000);`;
@@ -318,13 +321,13 @@ const STEPS = [
   },
   {
     num: 3,
-    title: "React Renders to String",
-    desc: "When a request hits the server, renderToString() executes the App component and produces a complete HTML string — no browser, no DOM, just a string.",
+    title: "React Streams the Shell",
+    desc: "When a request hits the server, renderToPipeableStream() begins rendering. The onShellReady callback fires as soon as the initial HTML shell is ready, then pipe(res) streams the content directly to the response.",
   },
   {
     num: 4,
-    title: "HTML Arrives at the Browser",
-    desc: "The browser receives a full HTML document. Content is visible immediately — no white flash, no loading spinner. The page is already rendered.",
+    title: "HTML Streams to the Browser",
+    desc: "The browser starts receiving HTML chunks immediately. Content becomes visible as it arrives — the shell renders first, then the rest streams in progressively.",
   },
   {
     num: 5,
