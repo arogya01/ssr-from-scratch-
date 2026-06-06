@@ -311,12 +311,11 @@ var App = () => {
 import React2 from "react";
 import { renderToPipeableStream } from "react-dom/server";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
 var app = express();
 var PORT = process.env.PORT || 3e3;
-var __filename = fileURLToPath(import.meta.url);
-var __dirname = path.dirname(__filename);
-app.use(express.static(path.join(process.cwd(), "public")));
+if (!process.env.VERCEL) {
+  app.use(express.static(path.join(process.cwd(), "public")));
+}
 app.use("/", (req, res) => {
   const { pipe } = renderToPipeableStream(React2.createElement(App), {
     onShellReady() {
@@ -328,7 +327,7 @@ app.use("/", (req, res) => {
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
                 <meta name="description" content="A deep dive into building Server-Side Rendering with React from scratch \u2014 no frameworks, just React, Express, and esbuild wired together by hand.">
-                <title>SSR From Scratch \u2014 React, Express & esbuild</title>
+                <title>SSR From Scratch \u2014 React, Express &amp; esbuild</title>
                 <link rel="stylesheet" href="/styles.css">
                 <script type="module" src="/client.js"></script>
             </head>
