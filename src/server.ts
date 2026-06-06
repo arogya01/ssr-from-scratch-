@@ -1,5 +1,5 @@
 import express from "express";
-import { App } from "./app.tsx";
+import { App } from "./app";
 import React from "react";
 import { renderToPipeableStream } from "react-dom/server";
 import path from "node:path";
