@@ -6,12 +6,12 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(process.cwd(), "public")));
 
 app.use("/", (req, res) => {
   const { pipe } = renderToPipeableStream(React.createElement(App), {
@@ -29,10 +29,7 @@ app.use("/", (req, res) => {
                 <script type="module" src="/client.js"></script>
             </head>
             <body> 
-                <div id="root"></div> 
-            </body>             
-        </html> 
-        `);
+                <div id="root">`);
       pipe(res);
     },
     onError(error) {
@@ -43,6 +40,10 @@ app.use("/", (req, res) => {
   });
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+if (!process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
+}
+
+export default app;

@@ -7,7 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npx tsx build.ts", 
-    "dev": "npx tsx build.ts && node dist/server.js"
+    "dev": "npx tsx build.ts && node api/index.js"
   },
   "keywords": [],
   "author": "",

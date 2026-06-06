@@ -1,11 +1,12 @@
 import esbuild from "esbuild";
 import { copyFileSync, mkdirSync } from "node:fs";
 
-// Ensure the output directory exists
-mkdirSync("dist/public", { recursive: true });
+// Ensure the output directories exist
+mkdirSync("public", { recursive: true });
+mkdirSync("api", { recursive: true });
 
 // Copy CSS to public directory
-copyFileSync("src/styles.css", "dist/public/styles.css");
+copyFileSync("src/styles.css", "public/styles.css");
 
 // Client bundle (browser)
 esbuild
@@ -14,7 +15,7 @@ esbuild
     bundle: true,
     platform: "browser",
     format: "esm",
-    outfile: "dist/public/client.js",
+    outfile: "public/client.js",
     outbase: "src",
     sourcemap: true,
     define: {
@@ -30,11 +31,8 @@ esbuild
     bundle: true,
     platform: "node",
     format: "esm",
-    outfile: "dist/server.js",
+    outfile: "api/index.js",
     sourcemap: true,
     external: ["express", "react", "react-dom"],
-    define: {
-      "process.env.NODE_ENV": '"production"',
-    },
   })
   .catch(() => process.exit());
