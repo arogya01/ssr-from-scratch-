@@ -6,8 +6,9 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsx build.ts", 
-    "dev": "tsx build.ts && node api/index.js"
+    "build": "tsx build.ts",
+    "start": "node dist/server.js",
+    "dev": "tsx build.ts && node dist/server.js"
   },
   "keywords": [],
   "author": "",

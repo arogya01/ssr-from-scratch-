@@ -7,10 +7,8 @@ import path from "node:path";
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Serve static assets locally; on Vercel the CDN handles this
-if (!process.env.VERCEL) {
-  app.use(express.static(path.join(process.cwd(), "public")));
-}
+// Serve static assets from the build output directory
+app.use(express.static(path.join(process.cwd(), "dist", "public")));
 
 app.use("/", (req, res) => {
   const { pipe } = renderToPipeableStream(React.createElement(App), {
@@ -39,10 +37,8 @@ app.use("/", (req, res) => {
   });
 });
 
-if (!process.env.VERCEL) {
-  app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-  });
-}
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
 
 export default app;

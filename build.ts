@@ -3,11 +3,10 @@ import { copyFileSync, mkdirSync } from "node:fs";
 
 try {
   // Ensure the output directories exist
-  mkdirSync("public", { recursive: true });
-  mkdirSync("api", { recursive: true });
+  mkdirSync("dist/public", { recursive: true });
 
   // Copy CSS to public directory
-  copyFileSync("src/styles.css", "public/styles.css");
+  copyFileSync("src/styles.css", "dist/public/styles.css");
 
   // Client bundle (browser)
   const clientBuild = esbuild.build({
@@ -15,7 +14,7 @@ try {
     bundle: true,
     platform: "browser",
     format: "esm",
-    outfile: "public/client.js",
+    outfile: "dist/public/client.js",
     outbase: "src",
     sourcemap: true,
     define: {
@@ -29,7 +28,7 @@ try {
     bundle: true,
     platform: "node",
     format: "esm",
-    outfile: "api/index.js",
+    outfile: "dist/server.js",
     sourcemap: true,
     external: ["express", "react", "react-dom"],
   });
