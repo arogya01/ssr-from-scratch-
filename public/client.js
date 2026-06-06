@@ -477,6 +477,48 @@ var require_react = __commonJS({
   }
 });
 
+// node_modules/.pnpm/react@19.2.7/node_modules/react/cjs/react-jsx-runtime.production.js
+var require_react_jsx_runtime_production = __commonJS({
+  "node_modules/.pnpm/react@19.2.7/node_modules/react/cjs/react-jsx-runtime.production.js"(exports) {
+    "use strict";
+    var REACT_ELEMENT_TYPE = /* @__PURE__ */ Symbol.for("react.transitional.element");
+    var REACT_FRAGMENT_TYPE = /* @__PURE__ */ Symbol.for("react.fragment");
+    function jsxProd(type, config, maybeKey) {
+      var key = null;
+      void 0 !== maybeKey && (key = "" + maybeKey);
+      void 0 !== config.key && (key = "" + config.key);
+      if ("key" in config) {
+        maybeKey = {};
+        for (var propName in config)
+          "key" !== propName && (maybeKey[propName] = config[propName]);
+      } else maybeKey = config;
+      config = maybeKey.ref;
+      return {
+        $$typeof: REACT_ELEMENT_TYPE,
+        type,
+        key,
+        ref: void 0 !== config ? config : null,
+        props: maybeKey
+      };
+    }
+    exports.Fragment = REACT_FRAGMENT_TYPE;
+    exports.jsx = jsxProd;
+    exports.jsxs = jsxProd;
+  }
+});
+
+// node_modules/.pnpm/react@19.2.7/node_modules/react/jsx-runtime.js
+var require_jsx_runtime = __commonJS({
+  "node_modules/.pnpm/react@19.2.7/node_modules/react/jsx-runtime.js"(exports, module) {
+    "use strict";
+    if (true) {
+      module.exports = require_react_jsx_runtime_production();
+    } else {
+      module.exports = null;
+    }
+  }
+});
+
 // node_modules/.pnpm/scheduler@0.27.0/node_modules/scheduler/cjs/scheduler.production.js
 var require_scheduler_production = __commonJS({
   "node_modules/.pnpm/scheduler@0.27.0/node_modules/scheduler/cjs/scheduler.production.js"(exports) {
@@ -766,7 +808,7 @@ var require_scheduler = __commonJS({
 var require_react_dom_production = __commonJS({
   "node_modules/.pnpm/react-dom@19.2.7_react@19.2.7/node_modules/react-dom/cjs/react-dom.production.js"(exports) {
     "use strict";
-    var React3 = require_react();
+    var React2 = require_react();
     function formatProdErrorMessage(code) {
       var url = "https://react.dev/errors/" + code;
       if (1 < arguments.length) {
@@ -806,7 +848,7 @@ var require_react_dom_production = __commonJS({
         implementation
       };
     }
-    var ReactSharedInternals = React3.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE;
+    var ReactSharedInternals = React2.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE;
     function getCrossOriginStringAs(as, input) {
       if ("font" === as) return "";
       if ("string" === typeof input)
@@ -942,7 +984,7 @@ var require_react_dom_client_production = __commonJS({
   "node_modules/.pnpm/react-dom@19.2.7_react@19.2.7/node_modules/react-dom/cjs/react-dom-client.production.js"(exports) {
     "use strict";
     var Scheduler = require_scheduler();
-    var React3 = require_react();
+    var React2 = require_react();
     var ReactDOM = require_react_dom();
     function formatProdErrorMessage(code) {
       var url = "https://react.dev/errors/" + code;
@@ -1133,7 +1175,7 @@ var require_react_dom_client_production = __commonJS({
       return null;
     }
     var isArrayImpl = Array.isArray;
-    var ReactSharedInternals = React3.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE;
+    var ReactSharedInternals = React2.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE;
     var ReactDOMSharedInternals = ReactDOM.__DOM_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE;
     var sharedNotPendingObject = {
       pending: false,
@@ -12579,7 +12621,7 @@ var require_react_dom_client_production = __commonJS({
         0 === i && attemptExplicitHydrationTarget(target);
       }
     };
-    var isomorphicReactPackageVersion$jscomp$inline_1840 = React3.version;
+    var isomorphicReactPackageVersion$jscomp$inline_1840 = React2.version;
     if ("19.2.7" !== isomorphicReactPackageVersion$jscomp$inline_1840)
       throw Error(
         formatProdErrorMessage(
@@ -12706,6 +12748,7 @@ var require_client = __commonJS({
 
 // src/app.tsx
 var import_react = __toESM(require_react(), 1);
+var import_jsx_runtime = __toESM(require_jsx_runtime(), 1);
 function useReveal() {
   const ref = (0, import_react.useRef)(null);
   (0, import_react.useEffect)(() => {
@@ -12727,16 +12770,74 @@ function useReveal() {
 }
 function Reveal({ children, className = "" }) {
   const ref = useReveal();
-  return /* @__PURE__ */ import_react.default.createElement("div", { ref, className: `reveal ${className}` }, children);
+  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { ref, className: `reveal ${className}`, children });
 }
 function Nav() {
-  return /* @__PURE__ */ import_react.default.createElement("nav", { className: "nav", id: "nav" }, /* @__PURE__ */ import_react.default.createElement("div", { className: "nav-inner" }, /* @__PURE__ */ import_react.default.createElement("span", { className: "nav-brand" }, "SSR From Scratch"), /* @__PURE__ */ import_react.default.createElement("ul", { className: "nav-links" }, /* @__PURE__ */ import_react.default.createElement("li", null, /* @__PURE__ */ import_react.default.createElement("a", { href: "#architecture" }, "Architecture")), /* @__PURE__ */ import_react.default.createElement("li", null, /* @__PURE__ */ import_react.default.createElement("a", { href: "#features" }, "Features")), /* @__PURE__ */ import_react.default.createElement("li", null, /* @__PURE__ */ import_react.default.createElement("a", { href: "#code" }, "Code")), /* @__PURE__ */ import_react.default.createElement("li", null, /* @__PURE__ */ import_react.default.createElement("a", { href: "#how-it-works" }, "How It Works")), /* @__PURE__ */ import_react.default.createElement("li", null, /* @__PURE__ */ import_react.default.createElement("a", { href: "#stack" }, "Stack")))));
+  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("nav", { className: "nav", id: "nav", children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "nav-inner", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "nav-brand", children: "SSR From Scratch" }),
+    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("ul", { className: "nav-links", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("a", { href: "#architecture", children: "Architecture" }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("a", { href: "#features", children: "Features" }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("a", { href: "#code", children: "Code" }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("a", { href: "#how-it-works", children: "How It Works" }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("a", { href: "#stack", children: "Stack" }) })
+    ] })
+  ] }) });
 }
 function Hero() {
-  return /* @__PURE__ */ import_react.default.createElement("section", { className: "hero", id: "hero" }, /* @__PURE__ */ import_react.default.createElement("div", { className: "page-container" }, /* @__PURE__ */ import_react.default.createElement("span", { className: "hero-label" }, "A Learning Experiment"), /* @__PURE__ */ import_react.default.createElement("h1", { className: "hero-title" }, "Server-Side Rendering.", " ", /* @__PURE__ */ import_react.default.createElement("span", { className: "highlight" }, "From Scratch.")), /* @__PURE__ */ import_react.default.createElement("p", { className: "hero-subtitle" }, "No frameworks. No magic. Just React, Express, and esbuild \u2014 wired together by hand to understand what really happens when HTML streams to the browser."), /* @__PURE__ */ import_react.default.createElement("div", { className: "hero-cta-group" }, /* @__PURE__ */ import_react.default.createElement("a", { href: "#architecture" }, /* @__PURE__ */ import_react.default.createElement("button", { className: "button-primary", id: "cta-explore" }, "Explore the Architecture")), /* @__PURE__ */ import_react.default.createElement("a", { href: "#code" }, /* @__PURE__ */ import_react.default.createElement("button", { className: "button-secondary", id: "cta-code" }, "View the Code")))));
+  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("section", { className: "hero", id: "hero", children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "page-container", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "hero-label", children: "A Learning Experiment" }),
+    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h1", { className: "hero-title", children: [
+      "Server-Side Rendering.",
+      " ",
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "highlight", children: "From Scratch." })
+    ] }),
+    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "hero-subtitle", children: "No frameworks. No magic. Just React, Express, and esbuild \u2014 wired together by hand to understand what really happens when HTML streams to the browser." }),
+    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "hero-cta-group", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("a", { href: "#architecture", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { className: "button-primary", id: "cta-explore", children: "Explore the Architecture" }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("a", { href: "#code", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { className: "button-secondary", id: "cta-code", children: "View the Code" }) })
+    ] })
+  ] }) });
 }
 function Architecture() {
-  return /* @__PURE__ */ import_react.default.createElement("section", { className: "architecture-section", id: "architecture" }, /* @__PURE__ */ import_react.default.createElement("div", { className: "page-container" }, /* @__PURE__ */ import_react.default.createElement(Reveal, null, /* @__PURE__ */ import_react.default.createElement("span", { className: "section-label" }, "Architecture"), /* @__PURE__ */ import_react.default.createElement("h2", { className: "section-title", style: { color: "var(--apple-silver-text)" } }, "The Full Picture"), /* @__PURE__ */ import_react.default.createElement("p", { className: "section-subtitle" }, "A request travels from browser to server and back \u2014 streamed as HTML chunks, then hydrated into a fully interactive React app.")), /* @__PURE__ */ import_react.default.createElement(Reveal, null, /* @__PURE__ */ import_react.default.createElement("div", { className: "architecture-diagram" }, /* @__PURE__ */ import_react.default.createElement("div", { className: "arch-node" }, /* @__PURE__ */ import_react.default.createElement("span", { className: "arch-node-icon" }, "\u{1F310}"), /* @__PURE__ */ import_react.default.createElement("div", { className: "arch-node-title" }, "Browser"), /* @__PURE__ */ import_react.default.createElement("div", { className: "arch-node-desc" }, "Sends GET request")), /* @__PURE__ */ import_react.default.createElement("span", { className: "arch-arrow" }, "\u2192"), /* @__PURE__ */ import_react.default.createElement("div", { className: "arch-node" }, /* @__PURE__ */ import_react.default.createElement("span", { className: "arch-node-icon" }, "\u26A1"), /* @__PURE__ */ import_react.default.createElement("div", { className: "arch-node-title" }, "Express"), /* @__PURE__ */ import_react.default.createElement("div", { className: "arch-node-desc" }, "Catches all routes")), /* @__PURE__ */ import_react.default.createElement("span", { className: "arch-arrow" }, "\u2192"), /* @__PURE__ */ import_react.default.createElement("div", { className: "arch-node" }, /* @__PURE__ */ import_react.default.createElement("span", { className: "arch-node-icon" }, "\u269B\uFE0F"), /* @__PURE__ */ import_react.default.createElement("div", { className: "arch-node-title" }, "React Streaming"), /* @__PURE__ */ import_react.default.createElement("div", { className: "arch-node-desc" }, "renderToPipeableStream()")), /* @__PURE__ */ import_react.default.createElement("span", { className: "arch-arrow" }, "\u2192"), /* @__PURE__ */ import_react.default.createElement("div", { className: "arch-node" }, /* @__PURE__ */ import_react.default.createElement("span", { className: "arch-node-icon" }, "\u{1F4C4}"), /* @__PURE__ */ import_react.default.createElement("div", { className: "arch-node-title" }, "HTML Stream"), /* @__PURE__ */ import_react.default.createElement("div", { className: "arch-node-desc" }, "Chunks piped to res")), /* @__PURE__ */ import_react.default.createElement("span", { className: "arch-arrow" }, "\u2192"), /* @__PURE__ */ import_react.default.createElement("div", { className: "arch-node" }, /* @__PURE__ */ import_react.default.createElement("span", { className: "arch-node-icon" }, "\u{1F4A7}"), /* @__PURE__ */ import_react.default.createElement("div", { className: "arch-node-title" }, "Hydration"), /* @__PURE__ */ import_react.default.createElement("div", { className: "arch-node-desc" }, "hydrateRoot() binds"))))));
+  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("section", { className: "architecture-section", id: "architecture", children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "page-container", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Reveal, { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "section-label", children: "Architecture" }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", { className: "section-title", style: { color: "var(--apple-silver-text)" }, children: "The Full Picture" }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "section-subtitle", children: "A request travels from browser to server and back \u2014 streamed as HTML chunks, then hydrated into a fully interactive React app." })
+    ] }),
+    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Reveal, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "architecture-diagram", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "arch-node", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "arch-node-icon", children: "\u{1F310}" }),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "arch-node-title", children: "Browser" }),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "arch-node-desc", children: "Sends GET request" })
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "arch-arrow", children: "\u2192" }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "arch-node", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "arch-node-icon", children: "\u26A1" }),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "arch-node-title", children: "Express" }),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "arch-node-desc", children: "Catches all routes" })
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "arch-arrow", children: "\u2192" }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "arch-node", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "arch-node-icon", children: "\u269B\uFE0F" }),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "arch-node-title", children: "React Streaming" }),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "arch-node-desc", children: "renderToPipeableStream()" })
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "arch-arrow", children: "\u2192" }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "arch-node", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "arch-node-icon", children: "\u{1F4C4}" }),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "arch-node-title", children: "HTML Stream" }),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "arch-node-desc", children: "Chunks piped to res" })
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "arch-arrow", children: "\u2192" }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "arch-node", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "arch-node-icon", children: "\u{1F4A7}" }),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "arch-node-title", children: "Hydration" }),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "arch-node-desc", children: "hydrateRoot() binds" })
+      ] })
+    ] }) })
+  ] }) });
 }
 var FEATURES = [
   {
@@ -12776,10 +12877,47 @@ var FEATURES = [
   }
 ];
 function Features() {
-  return /* @__PURE__ */ import_react.default.createElement("section", { className: "features-section", id: "features" }, /* @__PURE__ */ import_react.default.createElement("div", { className: "page-container" }, /* @__PURE__ */ import_react.default.createElement(Reveal, null, /* @__PURE__ */ import_react.default.createElement("span", { className: "section-label" }, "What We Built"), /* @__PURE__ */ import_react.default.createElement("h2", { className: "section-title" }, "Every Piece, By Hand"), /* @__PURE__ */ import_react.default.createElement("p", { className: "section-subtitle" }, "Understanding SSR means understanding each layer. Here's what this prototype covers.")), /* @__PURE__ */ import_react.default.createElement("div", { className: "features-grid" }, FEATURES.map((f, i) => /* @__PURE__ */ import_react.default.createElement(Reveal, { key: i }, /* @__PURE__ */ import_react.default.createElement("div", { className: "feature-card", id: `feature-${i}` }, /* @__PURE__ */ import_react.default.createElement("span", { className: "feature-icon" }, f.icon), /* @__PURE__ */ import_react.default.createElement("h3", { className: "feature-title" }, f.title), /* @__PURE__ */ import_react.default.createElement("p", { className: "feature-desc" }, f.desc)))))));
+  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("section", { className: "features-section", id: "features", children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "page-container", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Reveal, { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "section-label", children: "What We Built" }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", { className: "section-title", children: "Every Piece, By Hand" }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "section-subtitle", children: "Understanding SSR means understanding each layer. Here's what this prototype covers." })
+    ] }),
+    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "features-grid", children: FEATURES.map((f, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Reveal, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "feature-card", id: `feature-${i}`, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "feature-icon", children: f.icon }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", { className: "feature-title", children: f.title }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "feature-desc", children: f.desc })
+    ] }) }, i)) })
+  ] }) });
 }
 function CodeShowcase() {
-  return /* @__PURE__ */ import_react.default.createElement("section", { className: "code-section", id: "code" }, /* @__PURE__ */ import_react.default.createElement("div", { className: "page-container" }, /* @__PURE__ */ import_react.default.createElement(Reveal, null, /* @__PURE__ */ import_react.default.createElement("span", { className: "section-label" }, "Under the Hood"), /* @__PURE__ */ import_react.default.createElement("h2", { className: "section-title" }, "The Code That Powers It"), /* @__PURE__ */ import_react.default.createElement("p", { className: "section-subtitle" }, "Two files. Two sides of the same coin. One renders on the server, the other hydrates on the client.")), /* @__PURE__ */ import_react.default.createElement("div", { className: "code-blocks" }, /* @__PURE__ */ import_react.default.createElement(Reveal, null, /* @__PURE__ */ import_react.default.createElement("div", { className: "code-block", id: "code-server" }, /* @__PURE__ */ import_react.default.createElement("div", { className: "code-block-header" }, /* @__PURE__ */ import_react.default.createElement("span", { className: "code-dot red" }), /* @__PURE__ */ import_react.default.createElement("span", { className: "code-dot yellow" }), /* @__PURE__ */ import_react.default.createElement("span", { className: "code-dot green" }), /* @__PURE__ */ import_react.default.createElement("span", { className: "code-block-filename" }, "server.ts")), /* @__PURE__ */ import_react.default.createElement("div", { className: "code-block-body" }, /* @__PURE__ */ import_react.default.createElement("pre", null, `${serverCode()}`)))), /* @__PURE__ */ import_react.default.createElement(Reveal, null, /* @__PURE__ */ import_react.default.createElement("div", { className: "code-block", id: "code-client" }, /* @__PURE__ */ import_react.default.createElement("div", { className: "code-block-header" }, /* @__PURE__ */ import_react.default.createElement("span", { className: "code-dot red" }), /* @__PURE__ */ import_react.default.createElement("span", { className: "code-dot yellow" }), /* @__PURE__ */ import_react.default.createElement("span", { className: "code-dot green" }), /* @__PURE__ */ import_react.default.createElement("span", { className: "code-block-filename" }, "client.tsx")), /* @__PURE__ */ import_react.default.createElement("div", { className: "code-block-body" }, /* @__PURE__ */ import_react.default.createElement("pre", null, `${clientCode()}`)))))));
+  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("section", { className: "code-section", id: "code", children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "page-container", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Reveal, { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "section-label", children: "Under the Hood" }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", { className: "section-title", children: "The Code That Powers It" }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "section-subtitle", children: "Two files. Two sides of the same coin. One renders on the server, the other hydrates on the client." })
+    ] }),
+    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "code-blocks", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Reveal, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "code-block", id: "code-server", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "code-block-header", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "code-dot red" }),
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "code-dot yellow" }),
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "code-dot green" }),
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "code-block-filename", children: "server.ts" })
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "code-block-body", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("pre", { children: `${serverCode()}` }) })
+      ] }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Reveal, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "code-block", id: "code-client", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "code-block-header", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "code-dot red" }),
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "code-dot yellow" }),
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "code-dot green" }),
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "code-block-filename", children: "client.tsx" })
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "code-block-body", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("pre", { children: `${clientCode()}` }) })
+      ] }) })
+    ] })
+  ] }) });
 }
 function serverCode() {
   return `import express from "express";
@@ -12856,7 +12994,20 @@ var STEPS = [
   }
 ];
 function HowItWorks() {
-  return /* @__PURE__ */ import_react.default.createElement("section", { className: "steps-section", id: "how-it-works" }, /* @__PURE__ */ import_react.default.createElement("div", { className: "page-container" }, /* @__PURE__ */ import_react.default.createElement(Reveal, null, /* @__PURE__ */ import_react.default.createElement("span", { className: "section-label" }, "Step by Step"), /* @__PURE__ */ import_react.default.createElement("h2", { className: "section-title" }, "How It Works"), /* @__PURE__ */ import_react.default.createElement("p", { className: "section-subtitle" }, "From build to interaction \u2014 the lifecycle of a server-rendered React page.")), /* @__PURE__ */ import_react.default.createElement("div", { className: "steps-timeline" }, STEPS.map((s) => /* @__PURE__ */ import_react.default.createElement(Reveal, { key: s.num }, /* @__PURE__ */ import_react.default.createElement("div", { className: "step-item", id: `step-${s.num}` }, /* @__PURE__ */ import_react.default.createElement("div", { className: "step-number" }, s.num), /* @__PURE__ */ import_react.default.createElement("div", { className: "step-content" }, /* @__PURE__ */ import_react.default.createElement("h3", { className: "step-title" }, s.title), /* @__PURE__ */ import_react.default.createElement("p", { className: "step-desc" }, s.desc))))))));
+  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("section", { className: "steps-section", id: "how-it-works", children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "page-container", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Reveal, { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "section-label", children: "Step by Step" }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", { className: "section-title", children: "How It Works" }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "section-subtitle", children: "From build to interaction \u2014 the lifecycle of a server-rendered React page." })
+    ] }),
+    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "steps-timeline", children: STEPS.map((s) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Reveal, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "step-item", id: `step-${s.num}`, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "step-number", children: s.num }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "step-content", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", { className: "step-title", children: s.title }),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "step-desc", children: s.desc })
+      ] })
+    ] }) }, s.num)) })
+  ] }) });
 }
 var TECH = [
   { icon: "\u269B\uFE0F", name: "React 19" },
@@ -12867,25 +13018,61 @@ var TECH = [
   { icon: "\u{1F7E2}", name: "Node.js" }
 ];
 function TechStack() {
-  return /* @__PURE__ */ import_react.default.createElement("section", { className: "tech-section", id: "stack" }, /* @__PURE__ */ import_react.default.createElement("div", { className: "page-container" }, /* @__PURE__ */ import_react.default.createElement(Reveal, null, /* @__PURE__ */ import_react.default.createElement("span", { className: "section-label" }, "Built With"), /* @__PURE__ */ import_react.default.createElement("h2", { className: "section-title" }, "The Stack"), /* @__PURE__ */ import_react.default.createElement("p", { className: "section-subtitle" }, "Modern, minimal, and production-ready. Every dependency earned its place.")), /* @__PURE__ */ import_react.default.createElement(Reveal, null, /* @__PURE__ */ import_react.default.createElement("div", { className: "tech-grid" }, TECH.map((t, i) => /* @__PURE__ */ import_react.default.createElement("div", { className: "tech-chip", key: i, id: `tech-${i}` }, /* @__PURE__ */ import_react.default.createElement("span", { className: "tech-chip-icon" }, t.icon), t.name))))));
+  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("section", { className: "tech-section", id: "stack", children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "page-container", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Reveal, { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "section-label", children: "Built With" }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", { className: "section-title", children: "The Stack" }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "section-subtitle", children: "Modern, minimal, and production-ready. Every dependency earned its place." })
+    ] }),
+    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Reveal, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "tech-grid", children: TECH.map((t, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "tech-chip", id: `tech-${i}`, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "tech-chip-icon", children: t.icon }),
+      t.name
+    ] }, i)) }) })
+  ] }) });
 }
 function Footer() {
-  return /* @__PURE__ */ import_react.default.createElement("footer", { className: "footer", id: "footer" }, /* @__PURE__ */ import_react.default.createElement("div", { className: "page-container" }, /* @__PURE__ */ import_react.default.createElement("p", { className: "footer-text" }, "Built from scratch by", " ", /* @__PURE__ */ import_react.default.createElement("a", { href: "https://github.com/arogyabichpuria", target: "_blank", rel: "noopener noreferrer" }, "Arogya Bichpuria"), " ", "\u2014 because the best way to learn is to build.")));
+  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("footer", { className: "footer", id: "footer", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "page-container", children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", { className: "footer-text", children: [
+    "Built from scratch by",
+    " ",
+    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("a", { href: "https://github.com/arogyabichpuria", target: "_blank", rel: "noopener noreferrer", children: "Arogya Bichpuria" }),
+    " ",
+    "\u2014 because the best way to learn is to build."
+  ] }) }) });
 }
 var App = () => {
-  return /* @__PURE__ */ import_react.default.createElement(import_react.default.Fragment, null, /* @__PURE__ */ import_react.default.createElement(Nav, null), /* @__PURE__ */ import_react.default.createElement(Hero, null), /* @__PURE__ */ import_react.default.createElement(Architecture, null), /* @__PURE__ */ import_react.default.createElement(Features, null), /* @__PURE__ */ import_react.default.createElement(CodeShowcase, null), /* @__PURE__ */ import_react.default.createElement(HowItWorks, null), /* @__PURE__ */ import_react.default.createElement(TechStack, null), /* @__PURE__ */ import_react.default.createElement(Footer, null));
+  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
+    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Nav, {}),
+    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Hero, {}),
+    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Architecture, {}),
+    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Features, {}),
+    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CodeShowcase, {}),
+    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(HowItWorks, {}),
+    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(TechStack, {}),
+    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Footer, {})
+  ] });
 };
 
 // src/client.tsx
 var import_client = __toESM(require_client(), 1);
-var import_react2 = __toESM(require_react(), 1);
-(0, import_client.hydrateRoot)(document.getElementById("root"), /* @__PURE__ */ import_react2.default.createElement(App, null));
+var import_jsx_runtime2 = __toESM(require_jsx_runtime(), 1);
+(0, import_client.hydrateRoot)(document.getElementById("root"), /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(App, {}));
 /*! Bundled license information:
 
 react/cjs/react.production.js:
   (**
    * @license React
    * react.production.js
+   *
+   * Copyright (c) Meta Platforms, Inc. and affiliates.
+   *
+   * This source code is licensed under the MIT license found in the
+   * LICENSE file in the root directory of this source tree.
+   *)
+
+react/cjs/react-jsx-runtime.production.js:
+  (**
+   * @license React
+   * react-jsx-runtime.production.js
    *
    * Copyright (c) Meta Platforms, Inc. and affiliates.
    *

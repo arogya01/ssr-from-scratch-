@@ -2,7 +2,8 @@
 import express from "express";
 
 // src/app.tsx
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
+import { Fragment, jsx, jsxs } from "react/jsx-runtime";
 function useReveal() {
   const ref = useRef(null);
   useEffect(() => {
@@ -24,16 +25,74 @@ function useReveal() {
 }
 function Reveal({ children, className = "" }) {
   const ref = useReveal();
-  return /* @__PURE__ */ React.createElement("div", { ref, className: `reveal ${className}` }, children);
+  return /* @__PURE__ */ jsx("div", { ref, className: `reveal ${className}`, children });
 }
 function Nav() {
-  return /* @__PURE__ */ React.createElement("nav", { className: "nav", id: "nav" }, /* @__PURE__ */ React.createElement("div", { className: "nav-inner" }, /* @__PURE__ */ React.createElement("span", { className: "nav-brand" }, "SSR From Scratch"), /* @__PURE__ */ React.createElement("ul", { className: "nav-links" }, /* @__PURE__ */ React.createElement("li", null, /* @__PURE__ */ React.createElement("a", { href: "#architecture" }, "Architecture")), /* @__PURE__ */ React.createElement("li", null, /* @__PURE__ */ React.createElement("a", { href: "#features" }, "Features")), /* @__PURE__ */ React.createElement("li", null, /* @__PURE__ */ React.createElement("a", { href: "#code" }, "Code")), /* @__PURE__ */ React.createElement("li", null, /* @__PURE__ */ React.createElement("a", { href: "#how-it-works" }, "How It Works")), /* @__PURE__ */ React.createElement("li", null, /* @__PURE__ */ React.createElement("a", { href: "#stack" }, "Stack")))));
+  return /* @__PURE__ */ jsx("nav", { className: "nav", id: "nav", children: /* @__PURE__ */ jsxs("div", { className: "nav-inner", children: [
+    /* @__PURE__ */ jsx("span", { className: "nav-brand", children: "SSR From Scratch" }),
+    /* @__PURE__ */ jsxs("ul", { className: "nav-links", children: [
+      /* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsx("a", { href: "#architecture", children: "Architecture" }) }),
+      /* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsx("a", { href: "#features", children: "Features" }) }),
+      /* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsx("a", { href: "#code", children: "Code" }) }),
+      /* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsx("a", { href: "#how-it-works", children: "How It Works" }) }),
+      /* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsx("a", { href: "#stack", children: "Stack" }) })
+    ] })
+  ] }) });
 }
 function Hero() {
-  return /* @__PURE__ */ React.createElement("section", { className: "hero", id: "hero" }, /* @__PURE__ */ React.createElement("div", { className: "page-container" }, /* @__PURE__ */ React.createElement("span", { className: "hero-label" }, "A Learning Experiment"), /* @__PURE__ */ React.createElement("h1", { className: "hero-title" }, "Server-Side Rendering.", " ", /* @__PURE__ */ React.createElement("span", { className: "highlight" }, "From Scratch.")), /* @__PURE__ */ React.createElement("p", { className: "hero-subtitle" }, "No frameworks. No magic. Just React, Express, and esbuild \u2014 wired together by hand to understand what really happens when HTML streams to the browser."), /* @__PURE__ */ React.createElement("div", { className: "hero-cta-group" }, /* @__PURE__ */ React.createElement("a", { href: "#architecture" }, /* @__PURE__ */ React.createElement("button", { className: "button-primary", id: "cta-explore" }, "Explore the Architecture")), /* @__PURE__ */ React.createElement("a", { href: "#code" }, /* @__PURE__ */ React.createElement("button", { className: "button-secondary", id: "cta-code" }, "View the Code")))));
+  return /* @__PURE__ */ jsx("section", { className: "hero", id: "hero", children: /* @__PURE__ */ jsxs("div", { className: "page-container", children: [
+    /* @__PURE__ */ jsx("span", { className: "hero-label", children: "A Learning Experiment" }),
+    /* @__PURE__ */ jsxs("h1", { className: "hero-title", children: [
+      "Server-Side Rendering.",
+      " ",
+      /* @__PURE__ */ jsx("span", { className: "highlight", children: "From Scratch." })
+    ] }),
+    /* @__PURE__ */ jsx("p", { className: "hero-subtitle", children: "No frameworks. No magic. Just React, Express, and esbuild \u2014 wired together by hand to understand what really happens when HTML streams to the browser." }),
+    /* @__PURE__ */ jsxs("div", { className: "hero-cta-group", children: [
+      /* @__PURE__ */ jsx("a", { href: "#architecture", children: /* @__PURE__ */ jsx("button", { className: "button-primary", id: "cta-explore", children: "Explore the Architecture" }) }),
+      /* @__PURE__ */ jsx("a", { href: "#code", children: /* @__PURE__ */ jsx("button", { className: "button-secondary", id: "cta-code", children: "View the Code" }) })
+    ] })
+  ] }) });
 }
 function Architecture() {
-  return /* @__PURE__ */ React.createElement("section", { className: "architecture-section", id: "architecture" }, /* @__PURE__ */ React.createElement("div", { className: "page-container" }, /* @__PURE__ */ React.createElement(Reveal, null, /* @__PURE__ */ React.createElement("span", { className: "section-label" }, "Architecture"), /* @__PURE__ */ React.createElement("h2", { className: "section-title", style: { color: "var(--apple-silver-text)" } }, "The Full Picture"), /* @__PURE__ */ React.createElement("p", { className: "section-subtitle" }, "A request travels from browser to server and back \u2014 streamed as HTML chunks, then hydrated into a fully interactive React app.")), /* @__PURE__ */ React.createElement(Reveal, null, /* @__PURE__ */ React.createElement("div", { className: "architecture-diagram" }, /* @__PURE__ */ React.createElement("div", { className: "arch-node" }, /* @__PURE__ */ React.createElement("span", { className: "arch-node-icon" }, "\u{1F310}"), /* @__PURE__ */ React.createElement("div", { className: "arch-node-title" }, "Browser"), /* @__PURE__ */ React.createElement("div", { className: "arch-node-desc" }, "Sends GET request")), /* @__PURE__ */ React.createElement("span", { className: "arch-arrow" }, "\u2192"), /* @__PURE__ */ React.createElement("div", { className: "arch-node" }, /* @__PURE__ */ React.createElement("span", { className: "arch-node-icon" }, "\u26A1"), /* @__PURE__ */ React.createElement("div", { className: "arch-node-title" }, "Express"), /* @__PURE__ */ React.createElement("div", { className: "arch-node-desc" }, "Catches all routes")), /* @__PURE__ */ React.createElement("span", { className: "arch-arrow" }, "\u2192"), /* @__PURE__ */ React.createElement("div", { className: "arch-node" }, /* @__PURE__ */ React.createElement("span", { className: "arch-node-icon" }, "\u269B\uFE0F"), /* @__PURE__ */ React.createElement("div", { className: "arch-node-title" }, "React Streaming"), /* @__PURE__ */ React.createElement("div", { className: "arch-node-desc" }, "renderToPipeableStream()")), /* @__PURE__ */ React.createElement("span", { className: "arch-arrow" }, "\u2192"), /* @__PURE__ */ React.createElement("div", { className: "arch-node" }, /* @__PURE__ */ React.createElement("span", { className: "arch-node-icon" }, "\u{1F4C4}"), /* @__PURE__ */ React.createElement("div", { className: "arch-node-title" }, "HTML Stream"), /* @__PURE__ */ React.createElement("div", { className: "arch-node-desc" }, "Chunks piped to res")), /* @__PURE__ */ React.createElement("span", { className: "arch-arrow" }, "\u2192"), /* @__PURE__ */ React.createElement("div", { className: "arch-node" }, /* @__PURE__ */ React.createElement("span", { className: "arch-node-icon" }, "\u{1F4A7}"), /* @__PURE__ */ React.createElement("div", { className: "arch-node-title" }, "Hydration"), /* @__PURE__ */ React.createElement("div", { className: "arch-node-desc" }, "hydrateRoot() binds"))))));
+  return /* @__PURE__ */ jsx("section", { className: "architecture-section", id: "architecture", children: /* @__PURE__ */ jsxs("div", { className: "page-container", children: [
+    /* @__PURE__ */ jsxs(Reveal, { children: [
+      /* @__PURE__ */ jsx("span", { className: "section-label", children: "Architecture" }),
+      /* @__PURE__ */ jsx("h2", { className: "section-title", style: { color: "var(--apple-silver-text)" }, children: "The Full Picture" }),
+      /* @__PURE__ */ jsx("p", { className: "section-subtitle", children: "A request travels from browser to server and back \u2014 streamed as HTML chunks, then hydrated into a fully interactive React app." })
+    ] }),
+    /* @__PURE__ */ jsx(Reveal, { children: /* @__PURE__ */ jsxs("div", { className: "architecture-diagram", children: [
+      /* @__PURE__ */ jsxs("div", { className: "arch-node", children: [
+        /* @__PURE__ */ jsx("span", { className: "arch-node-icon", children: "\u{1F310}" }),
+        /* @__PURE__ */ jsx("div", { className: "arch-node-title", children: "Browser" }),
+        /* @__PURE__ */ jsx("div", { className: "arch-node-desc", children: "Sends GET request" })
+      ] }),
+      /* @__PURE__ */ jsx("span", { className: "arch-arrow", children: "\u2192" }),
+      /* @__PURE__ */ jsxs("div", { className: "arch-node", children: [
+        /* @__PURE__ */ jsx("span", { className: "arch-node-icon", children: "\u26A1" }),
+        /* @__PURE__ */ jsx("div", { className: "arch-node-title", children: "Express" }),
+        /* @__PURE__ */ jsx("div", { className: "arch-node-desc", children: "Catches all routes" })
+      ] }),
+      /* @__PURE__ */ jsx("span", { className: "arch-arrow", children: "\u2192" }),
+      /* @__PURE__ */ jsxs("div", { className: "arch-node", children: [
+        /* @__PURE__ */ jsx("span", { className: "arch-node-icon", children: "\u269B\uFE0F" }),
+        /* @__PURE__ */ jsx("div", { className: "arch-node-title", children: "React Streaming" }),
+        /* @__PURE__ */ jsx("div", { className: "arch-node-desc", children: "renderToPipeableStream()" })
+      ] }),
+      /* @__PURE__ */ jsx("span", { className: "arch-arrow", children: "\u2192" }),
+      /* @__PURE__ */ jsxs("div", { className: "arch-node", children: [
+        /* @__PURE__ */ jsx("span", { className: "arch-node-icon", children: "\u{1F4C4}" }),
+        /* @__PURE__ */ jsx("div", { className: "arch-node-title", children: "HTML Stream" }),
+        /* @__PURE__ */ jsx("div", { className: "arch-node-desc", children: "Chunks piped to res" })
+      ] }),
+      /* @__PURE__ */ jsx("span", { className: "arch-arrow", children: "\u2192" }),
+      /* @__PURE__ */ jsxs("div", { className: "arch-node", children: [
+        /* @__PURE__ */ jsx("span", { className: "arch-node-icon", children: "\u{1F4A7}" }),
+        /* @__PURE__ */ jsx("div", { className: "arch-node-title", children: "Hydration" }),
+        /* @__PURE__ */ jsx("div", { className: "arch-node-desc", children: "hydrateRoot() binds" })
+      ] })
+    ] }) })
+  ] }) });
 }
 var FEATURES = [
   {
@@ -73,10 +132,47 @@ var FEATURES = [
   }
 ];
 function Features() {
-  return /* @__PURE__ */ React.createElement("section", { className: "features-section", id: "features" }, /* @__PURE__ */ React.createElement("div", { className: "page-container" }, /* @__PURE__ */ React.createElement(Reveal, null, /* @__PURE__ */ React.createElement("span", { className: "section-label" }, "What We Built"), /* @__PURE__ */ React.createElement("h2", { className: "section-title" }, "Every Piece, By Hand"), /* @__PURE__ */ React.createElement("p", { className: "section-subtitle" }, "Understanding SSR means understanding each layer. Here's what this prototype covers.")), /* @__PURE__ */ React.createElement("div", { className: "features-grid" }, FEATURES.map((f, i) => /* @__PURE__ */ React.createElement(Reveal, { key: i }, /* @__PURE__ */ React.createElement("div", { className: "feature-card", id: `feature-${i}` }, /* @__PURE__ */ React.createElement("span", { className: "feature-icon" }, f.icon), /* @__PURE__ */ React.createElement("h3", { className: "feature-title" }, f.title), /* @__PURE__ */ React.createElement("p", { className: "feature-desc" }, f.desc)))))));
+  return /* @__PURE__ */ jsx("section", { className: "features-section", id: "features", children: /* @__PURE__ */ jsxs("div", { className: "page-container", children: [
+    /* @__PURE__ */ jsxs(Reveal, { children: [
+      /* @__PURE__ */ jsx("span", { className: "section-label", children: "What We Built" }),
+      /* @__PURE__ */ jsx("h2", { className: "section-title", children: "Every Piece, By Hand" }),
+      /* @__PURE__ */ jsx("p", { className: "section-subtitle", children: "Understanding SSR means understanding each layer. Here's what this prototype covers." })
+    ] }),
+    /* @__PURE__ */ jsx("div", { className: "features-grid", children: FEATURES.map((f, i) => /* @__PURE__ */ jsx(Reveal, { children: /* @__PURE__ */ jsxs("div", { className: "feature-card", id: `feature-${i}`, children: [
+      /* @__PURE__ */ jsx("span", { className: "feature-icon", children: f.icon }),
+      /* @__PURE__ */ jsx("h3", { className: "feature-title", children: f.title }),
+      /* @__PURE__ */ jsx("p", { className: "feature-desc", children: f.desc })
+    ] }) }, i)) })
+  ] }) });
 }
 function CodeShowcase() {
-  return /* @__PURE__ */ React.createElement("section", { className: "code-section", id: "code" }, /* @__PURE__ */ React.createElement("div", { className: "page-container" }, /* @__PURE__ */ React.createElement(Reveal, null, /* @__PURE__ */ React.createElement("span", { className: "section-label" }, "Under the Hood"), /* @__PURE__ */ React.createElement("h2", { className: "section-title" }, "The Code That Powers It"), /* @__PURE__ */ React.createElement("p", { className: "section-subtitle" }, "Two files. Two sides of the same coin. One renders on the server, the other hydrates on the client.")), /* @__PURE__ */ React.createElement("div", { className: "code-blocks" }, /* @__PURE__ */ React.createElement(Reveal, null, /* @__PURE__ */ React.createElement("div", { className: "code-block", id: "code-server" }, /* @__PURE__ */ React.createElement("div", { className: "code-block-header" }, /* @__PURE__ */ React.createElement("span", { className: "code-dot red" }), /* @__PURE__ */ React.createElement("span", { className: "code-dot yellow" }), /* @__PURE__ */ React.createElement("span", { className: "code-dot green" }), /* @__PURE__ */ React.createElement("span", { className: "code-block-filename" }, "server.ts")), /* @__PURE__ */ React.createElement("div", { className: "code-block-body" }, /* @__PURE__ */ React.createElement("pre", null, `${serverCode()}`)))), /* @__PURE__ */ React.createElement(Reveal, null, /* @__PURE__ */ React.createElement("div", { className: "code-block", id: "code-client" }, /* @__PURE__ */ React.createElement("div", { className: "code-block-header" }, /* @__PURE__ */ React.createElement("span", { className: "code-dot red" }), /* @__PURE__ */ React.createElement("span", { className: "code-dot yellow" }), /* @__PURE__ */ React.createElement("span", { className: "code-dot green" }), /* @__PURE__ */ React.createElement("span", { className: "code-block-filename" }, "client.tsx")), /* @__PURE__ */ React.createElement("div", { className: "code-block-body" }, /* @__PURE__ */ React.createElement("pre", null, `${clientCode()}`)))))));
+  return /* @__PURE__ */ jsx("section", { className: "code-section", id: "code", children: /* @__PURE__ */ jsxs("div", { className: "page-container", children: [
+    /* @__PURE__ */ jsxs(Reveal, { children: [
+      /* @__PURE__ */ jsx("span", { className: "section-label", children: "Under the Hood" }),
+      /* @__PURE__ */ jsx("h2", { className: "section-title", children: "The Code That Powers It" }),
+      /* @__PURE__ */ jsx("p", { className: "section-subtitle", children: "Two files. Two sides of the same coin. One renders on the server, the other hydrates on the client." })
+    ] }),
+    /* @__PURE__ */ jsxs("div", { className: "code-blocks", children: [
+      /* @__PURE__ */ jsx(Reveal, { children: /* @__PURE__ */ jsxs("div", { className: "code-block", id: "code-server", children: [
+        /* @__PURE__ */ jsxs("div", { className: "code-block-header", children: [
+          /* @__PURE__ */ jsx("span", { className: "code-dot red" }),
+          /* @__PURE__ */ jsx("span", { className: "code-dot yellow" }),
+          /* @__PURE__ */ jsx("span", { className: "code-dot green" }),
+          /* @__PURE__ */ jsx("span", { className: "code-block-filename", children: "server.ts" })
+        ] }),
+        /* @__PURE__ */ jsx("div", { className: "code-block-body", children: /* @__PURE__ */ jsx("pre", { children: `${serverCode()}` }) })
+      ] }) }),
+      /* @__PURE__ */ jsx(Reveal, { children: /* @__PURE__ */ jsxs("div", { className: "code-block", id: "code-client", children: [
+        /* @__PURE__ */ jsxs("div", { className: "code-block-header", children: [
+          /* @__PURE__ */ jsx("span", { className: "code-dot red" }),
+          /* @__PURE__ */ jsx("span", { className: "code-dot yellow" }),
+          /* @__PURE__ */ jsx("span", { className: "code-dot green" }),
+          /* @__PURE__ */ jsx("span", { className: "code-block-filename", children: "client.tsx" })
+        ] }),
+        /* @__PURE__ */ jsx("div", { className: "code-block-body", children: /* @__PURE__ */ jsx("pre", { children: `${clientCode()}` }) })
+      ] }) })
+    ] })
+  ] }) });
 }
 function serverCode() {
   return `import express from "express";
@@ -153,7 +249,20 @@ var STEPS = [
   }
 ];
 function HowItWorks() {
-  return /* @__PURE__ */ React.createElement("section", { className: "steps-section", id: "how-it-works" }, /* @__PURE__ */ React.createElement("div", { className: "page-container" }, /* @__PURE__ */ React.createElement(Reveal, null, /* @__PURE__ */ React.createElement("span", { className: "section-label" }, "Step by Step"), /* @__PURE__ */ React.createElement("h2", { className: "section-title" }, "How It Works"), /* @__PURE__ */ React.createElement("p", { className: "section-subtitle" }, "From build to interaction \u2014 the lifecycle of a server-rendered React page.")), /* @__PURE__ */ React.createElement("div", { className: "steps-timeline" }, STEPS.map((s) => /* @__PURE__ */ React.createElement(Reveal, { key: s.num }, /* @__PURE__ */ React.createElement("div", { className: "step-item", id: `step-${s.num}` }, /* @__PURE__ */ React.createElement("div", { className: "step-number" }, s.num), /* @__PURE__ */ React.createElement("div", { className: "step-content" }, /* @__PURE__ */ React.createElement("h3", { className: "step-title" }, s.title), /* @__PURE__ */ React.createElement("p", { className: "step-desc" }, s.desc))))))));
+  return /* @__PURE__ */ jsx("section", { className: "steps-section", id: "how-it-works", children: /* @__PURE__ */ jsxs("div", { className: "page-container", children: [
+    /* @__PURE__ */ jsxs(Reveal, { children: [
+      /* @__PURE__ */ jsx("span", { className: "section-label", children: "Step by Step" }),
+      /* @__PURE__ */ jsx("h2", { className: "section-title", children: "How It Works" }),
+      /* @__PURE__ */ jsx("p", { className: "section-subtitle", children: "From build to interaction \u2014 the lifecycle of a server-rendered React page." })
+    ] }),
+    /* @__PURE__ */ jsx("div", { className: "steps-timeline", children: STEPS.map((s) => /* @__PURE__ */ jsx(Reveal, { children: /* @__PURE__ */ jsxs("div", { className: "step-item", id: `step-${s.num}`, children: [
+      /* @__PURE__ */ jsx("div", { className: "step-number", children: s.num }),
+      /* @__PURE__ */ jsxs("div", { className: "step-content", children: [
+        /* @__PURE__ */ jsx("h3", { className: "step-title", children: s.title }),
+        /* @__PURE__ */ jsx("p", { className: "step-desc", children: s.desc })
+      ] })
+    ] }) }, s.num)) })
+  ] }) });
 }
 var TECH = [
   { icon: "\u269B\uFE0F", name: "React 19" },
@@ -164,13 +273,38 @@ var TECH = [
   { icon: "\u{1F7E2}", name: "Node.js" }
 ];
 function TechStack() {
-  return /* @__PURE__ */ React.createElement("section", { className: "tech-section", id: "stack" }, /* @__PURE__ */ React.createElement("div", { className: "page-container" }, /* @__PURE__ */ React.createElement(Reveal, null, /* @__PURE__ */ React.createElement("span", { className: "section-label" }, "Built With"), /* @__PURE__ */ React.createElement("h2", { className: "section-title" }, "The Stack"), /* @__PURE__ */ React.createElement("p", { className: "section-subtitle" }, "Modern, minimal, and production-ready. Every dependency earned its place.")), /* @__PURE__ */ React.createElement(Reveal, null, /* @__PURE__ */ React.createElement("div", { className: "tech-grid" }, TECH.map((t, i) => /* @__PURE__ */ React.createElement("div", { className: "tech-chip", key: i, id: `tech-${i}` }, /* @__PURE__ */ React.createElement("span", { className: "tech-chip-icon" }, t.icon), t.name))))));
+  return /* @__PURE__ */ jsx("section", { className: "tech-section", id: "stack", children: /* @__PURE__ */ jsxs("div", { className: "page-container", children: [
+    /* @__PURE__ */ jsxs(Reveal, { children: [
+      /* @__PURE__ */ jsx("span", { className: "section-label", children: "Built With" }),
+      /* @__PURE__ */ jsx("h2", { className: "section-title", children: "The Stack" }),
+      /* @__PURE__ */ jsx("p", { className: "section-subtitle", children: "Modern, minimal, and production-ready. Every dependency earned its place." })
+    ] }),
+    /* @__PURE__ */ jsx(Reveal, { children: /* @__PURE__ */ jsx("div", { className: "tech-grid", children: TECH.map((t, i) => /* @__PURE__ */ jsxs("div", { className: "tech-chip", id: `tech-${i}`, children: [
+      /* @__PURE__ */ jsx("span", { className: "tech-chip-icon", children: t.icon }),
+      t.name
+    ] }, i)) }) })
+  ] }) });
 }
 function Footer() {
-  return /* @__PURE__ */ React.createElement("footer", { className: "footer", id: "footer" }, /* @__PURE__ */ React.createElement("div", { className: "page-container" }, /* @__PURE__ */ React.createElement("p", { className: "footer-text" }, "Built from scratch by", " ", /* @__PURE__ */ React.createElement("a", { href: "https://github.com/arogyabichpuria", target: "_blank", rel: "noopener noreferrer" }, "Arogya Bichpuria"), " ", "\u2014 because the best way to learn is to build.")));
+  return /* @__PURE__ */ jsx("footer", { className: "footer", id: "footer", children: /* @__PURE__ */ jsx("div", { className: "page-container", children: /* @__PURE__ */ jsxs("p", { className: "footer-text", children: [
+    "Built from scratch by",
+    " ",
+    /* @__PURE__ */ jsx("a", { href: "https://github.com/arogyabichpuria", target: "_blank", rel: "noopener noreferrer", children: "Arogya Bichpuria" }),
+    " ",
+    "\u2014 because the best way to learn is to build."
+  ] }) }) });
 }
 var App = () => {
-  return /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement(Nav, null), /* @__PURE__ */ React.createElement(Hero, null), /* @__PURE__ */ React.createElement(Architecture, null), /* @__PURE__ */ React.createElement(Features, null), /* @__PURE__ */ React.createElement(CodeShowcase, null), /* @__PURE__ */ React.createElement(HowItWorks, null), /* @__PURE__ */ React.createElement(TechStack, null), /* @__PURE__ */ React.createElement(Footer, null));
+  return /* @__PURE__ */ jsxs(Fragment, { children: [
+    /* @__PURE__ */ jsx(Nav, {}),
+    /* @__PURE__ */ jsx(Hero, {}),
+    /* @__PURE__ */ jsx(Architecture, {}),
+    /* @__PURE__ */ jsx(Features, {}),
+    /* @__PURE__ */ jsx(CodeShowcase, {}),
+    /* @__PURE__ */ jsx(HowItWorks, {}),
+    /* @__PURE__ */ jsx(TechStack, {}),
+    /* @__PURE__ */ jsx(Footer, {})
+  ] });
 };
 
 // src/server.ts
